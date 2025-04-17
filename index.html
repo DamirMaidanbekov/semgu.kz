@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Университет</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="video-overlay">
+        <video id="intro-video" autoplay muted>
+            <source src="intro.mp4" type="video/mp4">
+        </video>
+    </div>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="logo.png" alt="Логотип" class="logo-img">
+                <h1>SHAKARIM UNIVERSITY</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#about">О нас</a></li>
+                <li><a href="#faculties">Факультеты</a></li>
+                <li><a href="#news">Новости</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-video-container">
+                <video class="hero-video" autoplay muted loop>
+                    <source src="home.mp4" type="video/mp4">
+                </video>
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="hero-content">
+                <h2>Добро пожаловать в</h2>
+                <a href="#about" class="university-title">SHAKARIM UNIVERSITY</a>
+                <p>Качественное образование для вашего будущего</p>
+            </div>
+        </section>
+
+        <section class="category">
+            <div class="category-container">
+                <div class="category-slider">
+                    <div class="category-slide">
+                        <div class="category-image">
+                            <img src="bg-child.jpg" alt="Школьникам">
+                            <div class="category-overlay"></div>
+                        </div>
+                        <div class="category-content">
+                            <h3 class="category-title"><a href="https://shakarim.edu.kz/ru/pages/obrazovaniye/lekoteka?pathway=obrazovaniye">Школьникам</a></h3>
+                            <div class="category-line"></div>
+                            <p class="category-description">Наша цель — заинтересовать детей наукой и показать, что она тоже может быть занимательной и абсолютно доступной. Познакомившись с университетской жизнью в столь раннем возрасте, Вы поймете, что учиться в университете — это увлекательно.</p>
+                        </div>
+                    </div>
+                    <div class="category-slide">
+                        <div class="category-image">
+                            <img src="bg-enrollee.jpg" alt="Поступающим">
+                            <div class="category-overlay"></div>
+                        </div>
+                        <div class="category-content">
+                            <h3 class="category-title"><a href="https://shakarim.edu.kz/ru/abituriyentam/rector?pathway=abituriyentam">Поступающим</a></h3>
+                            <div class="category-line"></div>
+                            <p class="category-description">Если вы хотите приобрести востребованную, гарантирующую стабильный доход специальность, наши двери открыты для вас!</p>
+                        </div>
+                    </div>
+                    <div class="category-slide">
+                        <div class="category-image">
+                            <img src="bg-teaching.jpg" alt="Обучающимся">
+                            <div class="category-overlay"></div>
+                        </div>
+                        <div class="category-content">
+                            <h3 class="category-title"><a href="https://shakarim.edu.kz/ru/pages/obuchayushchimsya/tsentr-obsluzhivaniya-obuchayushchikhsya?path=obuchayushchimsya">Обучающимся</a></h3>
+                            <div class="category-line"></div>
+                            <p class="category-description">Вы имеете возможность ознакомиться с информацией, касающейся Вашей академической деятельности, найдете ответы на вопросы о студенческой жизни, учебном процессе, практике, экзаменах, а также много полезной информации.</p>
+                        </div>
+                    </div>
+                    <div class="category-slide">
+                        <div class="category-image">
+                            <img src="bg-graduate.jpg" alt="Выпускникам">
+                            <div class="category-overlay"></div>
+                        </div>
+                        <div class="category-content">
+                            <h3 class="category-title"><a href="https://shakarim.edu.kz/ru/pages/index?pathway=vypusnikam">Выпускникам</a></h3>
+                            <div class="category-line"></div>
+                            <p class="category-description">Одной из задач Университета Шакарима является обеспечение конкурентоспособности выпускников. Мы заинтересованы в сотрудничестве с вами во имя процветания и развития нашего университета в рамках деятельности Ассоциации выпускников.</p>
+                        </div>
+                    </div>
+                    <div class="category-slide">
+                        <div class="category-image">
+                            <img src="bg-employer.jpg" alt="Работодателям">
+                            <div class="category-overlay"></div>
+                        </div>
+                        <div class="category-content">
+                            <h3 class="category-title"><a href="https://shakarim.edu.kz/ru/resume/index?pathway=rabotodatelyam">Работодателям</a></h3>
+                            <div class="category-line"></div>
+                            <p class="category-description">Мы предлагаем Вам различные формы сотрудничества такие как подбор соискателей на вакантные места, организация встреч с обучающимися, проведение тренингов и мастер-классов, реализация совместных проектов, а также участие в Ярмарке вакансий.</p>
+                        </div>
+                    </div>
+                    <div class="category-slide">
+                        <div class="category-image">
+                            <img src="bg-senior-teaching.jpg" alt="Серебряный">
+                            <div class="category-overlay"></div>
+                        </div>
+                        <div class="category-content">
+                            <h3 class="category-title"><a href="https://shakarim.edu.kz/ru/pages/obrazovaniye/serebryanyy?pathway=obrazovaniye">Серебряный</a></h3>
+                            <div class="category-line"></div>
+                            <p class="category-description">На базе Университета Шакарима создана новая форма деятельности направленная на повышение качества жизни, социальной активности и профессионального развития граждан взрослого поколения.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="info-numbers">
+            <div class="container">
+                <h1 class="title">
+                    shakarim university в цифрах
+                </h1>
+                <div class="info-numbers-content">
+                    <div class="item">
+                        <i class="fas fa-user-graduate fa-3x"></i>
+                        <div class="info">
+                            <p class="number">6692</p>
+                            <span class="subtext">обучающихся</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <i class="fas fa-chalkboard-teacher fa-3x"></i>
+                        <div class="info">
+                            <p class="number">354</p>
+                            <span class="subtext">ППС</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <i class="fas fa-university fa-3x"></i>
+                        <div class="info">
+                            <p class="number">9</p>
+                            <span class="subtext">учебных корпусов</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <i class="fas fa-building fa-3x"></i>
+                        <div class="info">
+                            <p class="number">5</p>
+                            <span class="subtext">общежития</span>
+                        </div>
+                    </div>
+                </div>
+                <hr class="yellow-line">
+            </div>
+        </section>
+
+        <section id="faculties" class="faculties">
+            <h2>Наши факультеты</h2>
+            <div class="faculty-grid">
+                <!-- Пустая секция факультетов -->
+            </div>
+        </section>
+
+        <section id="announcements" class="announcements">
+            <h2>Объявление</h2>
+            <div class="announcements-container">
+                <!-- Пустая секция объявлений -->
+            </div>
+        </section>
+
+        <section id="news" class="news">
+            <h2>Последние новости</h2>
+            <div class="news-grid">
+                <!-- Пустая секция новостей -->
+            </div>
+        </section>
+
+        <section class="rector">
+            <div class="rector-container">
+                <div class="rector-info">
+                    <div class="rector-photo">
+                        <img src="rector.jpg" alt="Орынбеков Думан Рымгалиевич">
+                        <div class="rector-name">
+                            <a href="https://shakarim.edu.kz/ru/structure/vice-rector/chairman-of-the-board-rector" class="rector-name-link">
+                                <h3>Орынбеков Думан Рымгалиевич</h3>
+                                <p>Председатель правления - Ректор</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="rector-contact">
+                        <h3>Задайте вопрос <span>нашему ректору</span></h3>
+                        <div class="contact-info">
+                            <a href="mailto:d.orynbekov@shakarim.kz" class="contact-item" data-copy="d.orynbekov@shakarim.kz">
+                                <i class='bx bx-envelope'></i>
+                                <span>d.orynbekov@shakarim.kz</span>
+                            </a>
+                            <a href="tel:+77222316029" class="contact-item" data-copy="+7(7222)31-60-29">
+                                <i class='bx bx-phone'></i>
+                                <span>+7(7222)31-60-29</span>
+                            </a>
+                            <div class="contact-item">
+                                <i class='bx bx-time'></i>
+                                <span>График приема : Среда,16:00-20:00. Суббота,10:00-13:00.</span>
+                            </div>
+                        </div>
+                        <button class="ask-question-btn">ЗАДАТЬ ВОПРОС</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <h2>Свяжитесь с нами</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="info-text">
+                            <h3>Адрес:</h3>
+                            <p><a href="https://go.2gis.com/GNglu" target="_blank" class="contact-link">071410, РК, область Абай, г. Семей, ул. Глинки, 20А</a></p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div class="info-text">
+                            <h3>Приемная ректора:</h3>
+                            <p><a href="tel:+77222316029" class="contact-link">+7 (7222) 31-60-29</a></p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div class="info-text">
+                            <h3>Приемная комиссия:</h3>
+                            <p><a href="tel:+77713654625" class="contact-link">+7 (771) 365-46-25</a></p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-building"></i>
+                        <div class="info-text">
+                            <h3>Канцелярия:</h3>
+                            <p><a href="tel:+77222313175" class="contact-link">+7 (7222) 31-31-75</a></p>
+                            <p><a href="mailto:kense@shakarim.kz" class="contact-link">kense@shakarim.kz</a></p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-headset"></i>
+                        <div class="info-text">
+                            <h3>Call centre:</h3>
+                            <p><a href="tel:+77222313175" class="contact-link">+7 (7222) 31-31-75</a></p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-university"></i>
+                        <div class="info-text">
+                            <h3>Министерство науки и высшего образования РК:</h3>
+                            <p><a href="tel:+77172742361" class="contact-link">+7 (7172) 74-23-61</a></p>
+                            <p><a href="https://t.me/gylym.jogarybilim" target="_blank" class="contact-link">@gylym.jogarybilim</a></p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <input type="text" placeholder="Ваше имя" required>
+                    <input type="email" placeholder="Ваш email" required>
+                    <textarea placeholder="Ваше сообщение" required></textarea>
+                    <button type="submit">Отправить</button>
+                </form>
+            </div>
+        </section>
+
+        <div class="question-modal">
+            <div class="modal-content">
+                <button class="close-modal"><i class='bx bx-x'></i></button>
+                <h3>Форма заявки</h3>
+                <form class="question-form">
+                    <div class="form-group">
+                        <label>ФИО</label>
+                        <input type="text" placeholder="ФИО" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Номер</label>
+                        <input type="tel" placeholder="+7 ..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="example@shakarim.kz" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Ваш вопрос</label>
+                        <textarea placeholder="Ваш вопрос" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">ОТПРАВИТЬ ЗАЯВКУ</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Университет</h3>
+                <p>Политика конфиденциальности</p>
+            </div>
+            <div class="footer-section">
+                <h3>Быстрые ссылки</h3>
+                <ul>
+                    <li><a href="#home">Главная</a></li>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#faculties">Факультеты</a></li>
+                    <li><a href="#news">Новости</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Социальные сети</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link insta"><i class='bx bxl-instagram'></i></a>
+                    <a href="#" class="social-link facebook"><i class='bx bxl-facebook'></i></a>
+                    <a href="#" class="social-link telegram"><i class='bx bxl-telegram'></i></a>
+                    <a href="#" class="social-link youtube"><i class='bx bxl-youtube'></i></a>
+                    <a href="#" class="social-link tiktok"><i class='bx bxl-tiktok'></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Информация © 1993–2025</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
