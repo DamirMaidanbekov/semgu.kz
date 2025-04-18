@@ -28,11 +28,15 @@ header {
     width: 100%;
     top: 0;
     z-index: 1000;
-    transition: background-color 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 header.scrolled {
     background-color: rgba(44, 62, 80, 0.9);
+}
+
+header.hidden {
+    transform: translateY(-100%);
 }
 
 .logo {
@@ -276,58 +280,162 @@ section h2 {
 /* Новости */
 .news {
     background-color: var(--light-bg);
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.news h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+.news-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .news-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 20px;
 }
 
-.news-card {
-    background-color: var(--white);
-    border-radius: 10px;
+.news-item {
+    position: relative;
+    height: 250px;
     overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-.news-card img {
+.news-main {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    height: 520px;
+}
+
+.news-secondary {
+    grid-column: 2;
+}
+
+.news-poster {
+    position: relative;
+    height: 100%;
     width: 100%;
-    height: 200px;
+}
+
+.news-poster img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    transition: transform 0.5s ease;
 }
 
-.news-card h3 {
-    padding: 1rem;
-    color: var(--primary-color);
+.news-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.7));
+    transition: background 0.3s ease;
 }
 
-.news-card p {
-    padding: 0 1rem 1rem;
+.news-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    color: white;
+    z-index: 1;
 }
 
-.read-more {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    margin: 0 1rem 1rem;
-    color: var(--secondary-color);
+.news-content h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    transition: transform 0.3s ease;
+}
+
+.news-main .news-content h3 {
+    font-size: 24px;
+}
+
+.news-date {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.news-link {
     text-decoration: none;
-    border: 1px solid var(--secondary-color);
-    border-radius: 5px;
-    transition: all 0.3s;
+    color: white;
+    display: block;
+    height: 100%;
 }
 
-.read-more:hover {
+.news-item:hover .news-poster img {
+    transform: scale(1.05);
+}
+
+.news-item:hover .news-overlay {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.8));
+}
+
+.news-item:hover .news-content h3 {
+    transform: translateY(-5px);
+}
+
+.news-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.view-all-btn {
+    display: inline-block;
+    padding: 12px 24px;
     background-color: var(--secondary-color);
-    color: var(--white);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.view-all-btn:hover {
+    background-color: #2980b9;
+}
+
+@media screen and (max-width: 768px) {
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .news-main {
+        grid-column: 1;
+        grid-row: 1;
+        height: 350px;
+        order: -1;
+    }
+    
+    .news-secondary {
+        grid-column: 1;
+        height: 200px;
+    }
 }
 
 /* Контакты */
 .contact {
     background-color: var(--light-bg);
     padding: 5rem 2rem;
+    position: relative;
+    overflow: hidden;
 }
 
 .contact-container {
@@ -583,6 +691,16 @@ footer {
     .hero-content p {
         font-size: 1.2rem;
     }
+
+    /* Smaller logo text on mobile */
+    .logo h1 {
+        font-size: 0.9rem;
+        letter-spacing: 0.5px;
+    }
+    
+    .logo-img {
+        height: 30px;
+    }
 }
 
 /* Видео оверлей */
@@ -771,6 +889,8 @@ footer {
 .rector {
     padding: 80px 0;
     background-color: #f8f9fa;
+    position: relative;
+    overflow: hidden;
 }
 
 .rector-container {
@@ -1020,6 +1140,8 @@ footer {
 .info-numbers {
     padding: 80px 0;
     background-color: #fff;
+    position: relative;
+    overflow: hidden;
 }
 
 .info-numbers .container {
@@ -1122,6 +1244,86 @@ footer {
     }
 }
 
+/* Decorative Background Shapes for Info Numbers */
+.info-numbers::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(52, 152, 219, 0.05));
+    top: -100px;
+    right: -100px;
+    z-index: 0;
+}
+
+.info-numbers::after {
+    content: '';
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    background: linear-gradient(135deg, rgba(241, 196, 15, 0.1), rgba(241, 196, 15, 0.05));
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    bottom: -80px;
+    left: -50px;
+    z-index: 0;
+}
+
+.info-numbers .shape-1 {
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    top: -70px;
+    left: 10%;
+    border-radius: 30% 70% 50% 50% / 50% 30% 70% 50%;
+    background: linear-gradient(135deg, rgba(255, 182, 72, 0.15), rgba(255, 121, 63, 0.15));
+    z-index: 1;
+    animation: float 10s ease-in-out infinite alternate;
+}
+
+.info-numbers .shape-2 {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    bottom: -50px;
+    right: 5%;
+    border-radius: 60% 40% 50% 50% / 40% 50% 50% 60%;
+    background: linear-gradient(135deg, rgba(77, 161, 255, 0.15), rgba(94, 231, 223, 0.15));
+    z-index: 1;
+    animation: float 8s ease-in-out infinite;
+}
+
+.info-numbers .shape-3 {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    top: 40%;
+    right: 20%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(199, 255, 171, 0.15), rgba(68, 195, 158, 0.15));
+    z-index: 1;
+    animation: float 12s ease-in-out infinite reverse;
+}
+
+/* Floating animation for all shapes */
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0);
+    }
+    50% {
+        transform: translateY(-15px) rotate(5deg);
+    }
+    100% {
+        transform: translateY(0) rotate(0);
+    }
+}
+
+/* Ensure all shapes are behind content */
+.info-numbers .container {
+    position: relative;
+    z-index: 2;
+}
+
 /* Announcements Section */
 .announcements {
     padding: 80px 0;
@@ -1143,4 +1345,946 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* Video Feature Section */
+.video-feature {
+    background-color: #0c1824;
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.video-feature .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.video-feature::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #3498db, #2ecc71);
+    opacity: 0.05;
+    top: -100px;
+    left: -100px;
+    z-index: 0;
+}
+
+.video-feature::after {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #e74c3c, #f39c12);
+    opacity: 0.05;
+    bottom: -80px;
+    right: -80px;
+    z-index: 0;
+}
+
+.video-wrapper {
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    overflow: hidden;
+    transform: perspective(1000px) rotateX(2deg);
+    transition: transform 0.5s ease;
+}
+
+.video-wrapper:hover {
+    transform: perspective(1000px) rotateX(0deg);
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.video-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    color: white;
+    position: relative;
+    z-index: 1;
+}
+
+.video-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #3498db, #2ecc71);
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+.video-decoration {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.dot {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+}
+
+.dot-1 {
+    background-color: #3498db;
+    top: 15px;
+    right: 15px;
+    animation-delay: 0s;
+}
+
+.dot-2 {
+    background-color: #2ecc71;
+    bottom: 15px;
+    left: 15px;
+    animation-delay: 2s;
+}
+
+.dot-3 {
+    background-color: #e74c3c;
+    bottom: 15px;
+    right: 40px;
+    animation-delay: 4s;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Faculties Section */
+.faculties {
+    background-color: #000;
+    background-image: radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 5px),
+                      radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 3px),
+                      radial-gradient(white, rgba(255,255,255,.1) 1px, transparent 2px);
+    background-size: 550px 550px, 350px 350px, 250px 250px;
+    background-position: 0 0, 40px 60px, 130px 270px;
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+    color: white;
+}
+
+.faculties h2 {
+    color: white;
+    position: relative;
+    z-index: 5;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.faculties-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    height: 800px;
+}
+
+.faculty-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+}
+
+.faculty-logo img {
+    width: 150px;
+    height: auto;
+    filter: drop-shadow(0 0 20px rgba(52, 152, 219, 0.7));
+    animation: pulse 3s infinite alternate;
+}
+
+@keyframes pulse {
+    0% { filter: drop-shadow(0 0 10px rgba(52, 152, 219, 0.5)); }
+    100% { filter: drop-shadow(0 0 30px rgba(52, 152, 219, 0.9)); }
+}
+
+.faculty-schools {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.school {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    cursor: pointer;
+    z-index: 1;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.school-circle {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--secondary-color);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5), 0 0 20px rgba(52, 152, 219, 0.7);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.school-circle i {
+    font-size: 40px;
+    margin-bottom: 5px;
+}
+
+.school-name {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.2;
+    padding: 0 5px;
+    transform: translateY(50%);
+    background: rgba(255,255,255,0.9);
+    color: var(--primary-color);
+    border-radius: 20px;
+    padding: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.school:hover .school-circle {
+    transform: scale(1.1);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5), 0 0 30px rgba(52, 152, 219, 0.9);
+}
+
+.school.active {
+    z-index: 100;
+    animation: none !important;
+    transform: none !important;
+    opacity: 1;
+}
+
+.school.active .school-banner {
+    display: flex;
+    opacity: 1;
+    transform: translateX(0);
+    z-index: 1000;
+}
+
+.school-banner {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    background-color: white;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 50px;
+    z-index: 1500;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.school-banner-inner {
+    display: flex;
+    max-width: 1200px;
+    width: 100%;
+    position: relative;
+}
+
+.banner-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: #000;
+    z-index: 10;
+}
+
+.banner-close:hover {
+    color: var(--secondary-color);
+}
+
+.banner-left {
+    flex: 1;
+    padding-right: 30px;
+    border-right: 1px solid #eee;
+}
+
+.banner-left img {
+    width: 300px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.banner-left h3 {
+    font-size: 22px;
+    margin-bottom: 5px;
+    color: #000;
+}
+
+.banner-left p {
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+.banner-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 16px;
+    color: #000;
+}
+
+.banner-contacts div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: transform 0.3s;
+    color: #000;
+}
+
+.banner-contacts div:hover {
+    transform: translateX(5px);
+}
+
+.banner-contacts i {
+    color: #000;
+    font-size: 22px;
+    min-width: 24px;
+    display: flex;
+    justify-content: center;
+}
+
+.banner-right {
+    flex: 1.5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 30px;
+}
+
+.banner-right p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #000;
+    font-weight: bold;
+}
+
+.school-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.school-stats div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 16px;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+    transition: transform 0.3s;
+    color: #000;
+}
+
+.school-stats div:hover {
+    transform: translateX(5px);
+}
+
+.school-stats i {
+    color: #000;
+    font-size: 22px;
+    min-width: 24px;
+    display: flex;
+    justify-content: center;
+}
+
+.details-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: var(--secondary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    align-self: flex-end;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+}
+
+.details-btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.6);
+}
+
+/* Spiral Arrows (simulated with CSS pseudo-elements for solar system effect) */
+.faculty-spirals {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.faculty-spirals::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 200px;
+    border: 2px solid rgba(52, 152, 219, 0.5);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) rotate(90deg);
+    opacity: 0.5;
+    animation: spiralRotate 20s linear infinite;
+}
+
+.faculty-spirals::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 300px;
+    border: 1px dashed rgba(52, 152, 219, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) rotate(90deg);
+    opacity: 0.3;
+    animation: spiralRotate 30s linear infinite reverse;
+}
+
+/* Add more orbits for solar system effect */
+.faculty-spirals .orbit-1,
+.faculty-spirals .orbit-2,
+.faculty-spirals .orbit-3 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    border: 1px solid rgba(52, 152, 219, 0.2);
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.faculty-spirals .orbit-1 {
+    width: 200px;
+    height: 100px;
+    animation: spiralRotate 15s linear infinite;
+}
+
+.faculty-spirals .orbit-2 {
+    width: 800px;
+    height: 400px;
+    animation: spiralRotate 35s linear infinite reverse;
+}
+
+.faculty-spirals .orbit-3 {
+    width: 900px;
+    height: 450px;
+    border-style: dotted;
+    animation: spiralRotate 40s linear infinite;
+}
+
+@keyframes spiralRotate {
+    0% { transform: translate(-50%, -50%) rotate(90deg); }
+    100% { transform: translate(-50%, -50%) rotate(450deg); }
+}
+
+/* Animation for schools floating up and down */
+@keyframes floatUpDown {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
+}
+
+.school {
+    animation: floatUpDown 6s ease-in-out infinite;
+}
+
+/* Random positioning for schools will be set via JS or inline styles */
+/* For now, setting approximate positions for demonstration */
+.school[data-id="1"] { top: 10%; left: 10%; animation-delay: 0s; }
+.school[data-id="2"] { top: 20%; left: 80%; animation-delay: 0.5s; }
+.school[data-id="3"] { top: 60%; left: 15%; animation-delay: 1s; }
+.school[data-id="4"] { top: 70%; left: 75%; animation-delay: 1.5s; }
+.school[data-id="5"] { top: 10%; left: 30%; animation-delay: 2s; }
+.school[data-id="6"] { top: 30%; left: 65%; animation-delay: 2.5s; }
+.school[data-id="7"] { top: 80%; left: 30%; animation-delay: 3s; }
+.school[data-id="8"] { top: 50%; left: 85%; animation-delay: 3.5s; }
+.school[data-id="9"] { top: 8% !important; left: 60%; animation-delay: 4s; }
+.school[data-id="10"] { top: 75%; left: 55%; animation-delay: 4.5s; }
+.school[data-id="11"] { top: 40%; left: 20%; animation-delay: 5s; }
+
+@media screen and (max-width: 991px) {
+    .school-banner {
+        padding: 30px 20px;
+    }
+    
+    .school-banner-inner {
+        flex-direction: column;
+    }
+    
+    .banner-left {
+        border-right: none;
+        border-bottom: 1px solid #eee;
+        padding-right: 0;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    .banner-left img {
+        width: 200px;
+        height: 267px;
+        margin: 0 auto 15px;
+    }
+    
+    .banner-right {
+        padding-left: 0;
+    }
+    
+    .school-stats div {
+        justify-content: center;
+    }
+    
+    .details-btn {
+        align-self: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .faculties-container {
+        height: 500px;
+    }
+    
+    .school {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .school-circle i {
+        font-size: 24px;
+    }
+    
+    .school-name {
+        font-size: 8px;
+        transform: translateY(30%);
+    }
+    
+    .faculty-logo img {
+        width: 100px;
+    }
+    
+    .space-decoration {
+        font-size: 18px;
+    }
+    
+    .video-title {
+        font-size: 1.8rem;
+    }
+    
+    @keyframes floatUpDown {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0); }
+    }
+}
+
+/* Space decorations */
+.space-decoration {
+    position: absolute;
+    font-size: 24px;
+    opacity: 0.7;
+    animation: float-around 20s linear infinite;
+    z-index: 1;
+}
+
+.space-decoration:nth-child(1) {
+    top: 10%;
+    left: 5%;
+    animation-duration: 30s;
+}
+
+.space-decoration:nth-child(2) {
+    top: 20%;
+    right: 8%;
+    animation-duration: 25s;
+    animation-delay: 5s;
+}
+
+.space-decoration:nth-child(3) {
+    bottom: 15%;
+    left: 12%;
+    animation-duration: 35s;
+    animation-delay: 2s;
+}
+
+.space-decoration:nth-child(4) {
+    bottom: 25%;
+    right: 10%;
+    animation-duration: 28s;
+    animation-delay: 7s;
+}
+
+@keyframes float-around {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(20px, 10px) rotate(90deg); }
+    50% { transform: translate(0, 20px) rotate(180deg); }
+    75% { transform: translate(-20px, 10px) rotate(270deg); }
+    100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+/* Section transition gradients */
+.section-transition {
+    height: 50px;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.05), transparent);
+    margin: 0;
+    padding: 0;
+}
+
+/* More specific section transitions */
+.transition-numbers-faculties {
+    height: 50px;
+    background: linear-gradient(to bottom, #fff, #000);
+    margin: 0;
+    padding: 0;
+}
+
+.transition-faculties-news {
+    height: 50px;
+    background: linear-gradient(to bottom, #000, #fff);
+    margin: 0;
+    padding: 0;
+}
+
+.transition-faculties-video {
+    height: 50px;
+    background: linear-gradient(to bottom, #000, #0c1824);
+    margin: 0;
+    padding: 0;
+}
+
+.transition-news-video {
+    height: 50px;
+    background: linear-gradient(to bottom, #fff, #0c1824);
+    margin: 0;
+    padding: 0;
+}
+
+.transition-video-rector {
+    height: 50px;
+    background: linear-gradient(to bottom, #0c1824, #f8f9fa);
+    margin: 0;
+    padding: 0;
+}
+
+/* Smallest screens */
+@media screen and (max-width: 480px) {
+    .logo h1 {
+        font-size: 0.75rem;
+        letter-spacing: 0;
+    }
+    
+    .logo-img {
+        height: 25px;
+    }
+    
+    .nav-links li {
+        margin-left: 1rem;
+    }
+    
+    .nav-links a {
+        font-size: 0.9rem;
+    }
+    
+    .info-numbers .number {
+        font-size: 28px;
+    }
+    
+    .info-numbers .subtext {
+        font-size: 14px;
+    }
+    
+    .rector-name h3 {
+        font-size: 22px;
+    }
+    
+    .rector-name p {
+        font-size: 16px;
+    }
+    
+    .contact-item {
+        font-size: 16px;
+    }
+    
+    .contact-item i {
+        font-size: 22px;
+    }
+}
+
+/* Media query for mobile devices */
+@media screen and (max-width: 768px) {
+    .rector-info {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .rector-photo {
+        order: -1; /* Move to top on mobile */
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto 20px;
+    }
+    
+    .rector-contact {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .rector-contact h3 {
+        font-size: 20px;
+    }
+    
+    .contact-info {
+        align-items: flex-start;
+    }
+}
+
+/* Reduce the SHAKARIM UNIVERSITY text in hero section for mobile */
+@media screen and (max-width: 768px) {
+    .university-title {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-content h2 {
+        font-size: 1.8rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    /* Ensure banner is fullscreen on mobile */
+    .school-banner {
+        padding: 20px;
+    }
+    
+    .school-banner-inner {
+        width: 100%;
+    }
+}
+
+/* Even smaller text for very small screens */
+@media screen and (max-width: 480px) {
+    .university-title {
+        font-size: 2rem;
+        margin-bottom: 0.8rem;
+        letter-spacing: 1px;
+    }
+    
+    .hero-content h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+        margin-bottom: 1.2rem;
+    }
+    
+    /* Tighter padding for very small screens */
+    .school-banner {
+        padding: 10px;
+    }
+}
+
+/* News Section Decorative Shapes */
+.news {
+    position: relative;
+    overflow: hidden;
+}
+
+.news .shape-1 {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    top: -50px;
+    left: -50px;
+    border-radius: 40%;
+    background: linear-gradient(135deg, rgba(255, 182, 72, 0.2), rgba(255, 121, 63, 0.15));
+    z-index: 1;
+    animation: float 8s ease-in-out infinite;
+}
+
+.news .shape-2 {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    bottom: -30px;
+    right: 15%;
+    border-radius: 30% 70% 70% 30% / 30% 40% 60% 70%;
+    background: linear-gradient(135deg, rgba(77, 161, 255, 0.15), rgba(94, 231, 223, 0.15));
+    z-index: 1;
+    animation: float 10s ease-in-out infinite reverse;
+}
+
+.news-container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Rector Section Decorative Shapes */
+.rector {
+    position: relative;
+    overflow: hidden;
+}
+
+.rector .shape-1 {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    top: 10%;
+    right: -100px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 157, 63, 0.15), rgba(255, 121, 63, 0.15));
+    z-index: 1;
+    animation: float 12s ease-in-out infinite;
+}
+
+.rector .shape-2 {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    bottom: 15%;
+    left: -50px;
+    border-radius: 30% 70% 50% 50% / 50% 30% 70% 50%;
+    background: linear-gradient(135deg, rgba(77, 161, 255, 0.15), rgba(94, 231, 223, 0.15));
+    z-index: 1;
+    animation: float 9s ease-in-out infinite alternate;
+}
+
+.rector-container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Contact Section Decorative Shapes */
+.contact {
+    position: relative;
+    overflow: hidden;
+}
+
+.contact .shape-1 {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    top: -80px;
+    right: -80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 182, 72, 0.15), rgba(255, 121, 63, 0.15));
+    z-index: 1;
+    animation: float 11s ease-in-out infinite;
+}
+
+.contact .shape-2 {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    bottom: 10%;
+    left: -50px;
+    border-radius: 40% 60% 50% 50% / 60% 40% 60% 40%;
+    background: linear-gradient(135deg, rgba(77, 161, 255, 0.15), rgba(94, 231, 223, 0.15));
+    z-index: 1;
+    animation: float 9s ease-in-out infinite reverse;
+}
+
+.contact .shape-3 {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    top: 40%;
+    left: 20%;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    background: linear-gradient(135deg, rgba(199, 255, 171, 0.15), rgba(68, 195, 158, 0.15));
+    z-index: 1;
+    animation: float 7s ease-in-out infinite alternate;
+}
+
+.contact-container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Animation for the floating shapes */
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
 } 

@@ -257,4 +257,130 @@ document.addEventListener('DOMContentLoaded', function() {
         // Here you can add form submission logic
         modal.style.display = 'none';
     });
+});
+
+// Header scroll behavior
+let lastScrollTop = 0;
+window.addEventListener('scroll', function() {
+    const header = document.querySelector('header');
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    // Add scrolled class for background color change
+    if (scrollTop > 50) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+    
+    // Hide header on scroll down, show on scroll up
+    if (scrollTop > lastScrollTop && scrollTop > 150) {
+        // Scrolling down and past the threshold
+        header.classList.add('hidden');
+    } else {
+        // Scrolling up
+        header.classList.remove('hidden');
+    }
+    lastScrollTop = scrollTop;
+});
+
+// Faculties Section Interactivity
+document.addEventListener('DOMContentLoaded', function() {
+    const schools = document.querySelectorAll('.school');
+    const facultiesSection = document.querySelector('.faculties');
+    const facultyLogo = document.querySelector('.faculty-logo');
+    const facultySpirals = document.querySelector('.faculty-spirals');
+    const closeButtons = document.querySelectorAll('.banner-close');
+    
+    // Function to close all banners
+    function closeAllBanners() {
+        schools.forEach(school => {
+            school.classList.remove('active');
+            school.style.zIndex = '1';
+            const banner = school.querySelector('.school-banner');
+            banner.style.display = 'none';
+            banner.style.opacity = '0';
+            banner.style.transform = 'scale(0.95)';
+        });
+        facultyLogo.style.display = 'block';
+        facultySpirals.style.display = 'block';
+        schools.forEach(school => {
+            school.style.display = 'block';
+            // Re-enable animation
+            school.style.animation = '';
+        });
+        document.body.style.overflow = '';
+    }
+
+    // Click event for each school
+    schools.forEach(school => {
+        school.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const isActive = this.classList.contains('active');
+            
+            closeAllBanners();
+            
+            if (!isActive) {
+                // Lock scroll to prevent background scrolling
+                document.body.style.overflow = 'hidden';
+                
+                // Activate the school
+                this.classList.add('active');
+                this.style.zIndex = '1000';
+                
+                // Get the banner
+                const banner = this.querySelector('.school-banner');
+                
+                // Display the banner in fullscreen
+                banner.style.display = 'flex';
+                
+                // Disable animation on the active school
+                this.style.animation = 'none';
+                
+                // Force the browser to acknowledge the changed styles
+                // before applying the transition
+                window.getComputedStyle(banner).opacity;
+                
+                // Animate in
+                banner.style.opacity = '1';
+                banner.style.transform = 'scale(1)';
+                
+                // Hide other elements
+                setTimeout(() => {
+                    facultyLogo.style.display = 'none';
+                    facultySpirals.style.display = 'none';
+                    schools.forEach(otherSchool => {
+                        if (otherSchool !== this) {
+                            otherSchool.style.display = 'none';
+                        }
+                    });
+                }, 200);
+            }
+        });
+    });
+
+    // Close banner when clicking the close button
+    closeButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.stopPropagation();
+            closeAllBanners();
+        });
+    });
+
+    // Close banner when clicking outside
+    document.body.addEventListener('click', function(e) {
+        if (!facultiesSection.contains(e.target)) {
+            closeAllBanners();
+        }
+    });
+
+    facultiesSection.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+    
+    // Listen for escape key to close banner
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeAllBanners();
+        }
+    });
 }); 
